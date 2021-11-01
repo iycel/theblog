@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}
+New Post
+{% endblock title %}
+
+{% block content %}
+<div style='display: flex; justify-content: center; align-items: center; flex-direction: column;'>
+    <div>
+        <h1 class='fw-bold mb-4'>Blog Post</h1>
+    </div>
+    <div>
+        <form action="" enctype='multipart/form-data' method="post" id='addnewpost'>
+
+            {% csrf_token %}
+
+            {% for i in user_form %}
+            <div class='input-group mb-3 d-grid gap-2 text-capitalize'>{{i.name}} : </div>
+            <div class='input-group mb-3 d-grid gap-2'>{{i}}</div>
+            {% endfor %}
+        </form>
+    </div>
+    <div>
+        <a class='btn btn-outline-primary mt-5' onclick="document.getElementById('addnewpost').submit()">Post</a>
+    </div>
+</div>
+{% endblock content %}

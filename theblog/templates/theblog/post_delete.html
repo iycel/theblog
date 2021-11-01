@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}
+{{user_post_delete}}
+{% endblock title %}
+{% block content %}
+<div>
+    <form action="" , method="POST" enctype='multipart/form-data'>
+        {% csrf_token %} 
+        <h2>Are you sure delete {{user_post_delete}} ?<h2>
+        {% comment %} <a href="{% url 'list'%}"><input type="submit" value="Yes"></a>
+        {% comment %} <input type="submit" value="Yes"> {% endcomment %} 
+        <input type="submit" value="Yes" onclick="window.location='{% url 'list' %}'"/>
+        <input type="button" value="No" onclick="window.location='{{request.META.HTTP_REFERER}}'"/>
+    </form>
+</div>
+{% endblock content %}

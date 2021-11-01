@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+Posts from Awkwards
+{% endblock title %}
+{% block content %}
+<div class='mt-5'>
+<ul>
+{% for i in user_posts %}
+<li><a href="{% url 'details' i.id %}">{{i.title}}</a></li>
+ {{i.author.first_name}} {{i.author.last_name}}
+ <br><br>
+{% endfor %}
+</ul>
+</div>
+{% endblock content %}

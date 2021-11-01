@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}
+{{user_post.title_tag}}
+{% endblock title %}
+
+{% block content %}
+<div class='container mt-5'>
+<h1>{{user_post.title}}</h1>
+<hr>
+<div class='text-end'>
+<p class='blockquote'>{{user_post.body}}</p>
+<p class='blockquote-footer'>{{user_post.post_date}} | by {{user_post.author.first_name}}</p>
+</div>
+</div>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <a href="{% url 'post_update' user_post.id %}" class='btn btn-primary me-md-3'>Edit</a>
+    <a href="{% url 'post_delete' user_post.id %}" class='btn btn-danger me-md-2'>Delete</a>
+    <a href="{% url 'list' %}" class='btn btn-secondary'>Back</a>
+<div>
+
+{% endblock content %}
+
+
+
