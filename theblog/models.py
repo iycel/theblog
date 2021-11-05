@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+def user_directory_path(instance, filename):
+    return 'blog/{0}/{1}'.format(instance.author.id, filename)
 class Category(models.Model):
     name = models.CharField(max_length=50)
 
@@ -10,7 +12,7 @@ class Post(models.Model):
     title = models.CharField(max_length=255, verbose_name='Title')
     title_tag = models.CharField(max_length=50, default='Awkward Blog from Awkward Men', verbose_name='Title Tag')
     body = models.TextField(verbose_name='Content')
-    image = models.ImageField(upload_to='post_pic', blank=True, verbose_name='Image')
+    image = models.ImageField(upload_to=user_directory_path, default='django.png')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Category')
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Login User')
     post_date = models.DateTimeField(auto_now_add=True)
