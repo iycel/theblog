@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from .models import Post
+from .models import Post, Category
 from .forms import UserPost
 
 def home(request):
