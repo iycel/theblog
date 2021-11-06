@@ -6,7 +6,7 @@
 {% block content %}
 <div class='container mt-5'>
 <h1>{{user_post.title}}</h1>
-<h1>{{user_post.image}}</h1>
+<img src='{{user_post.image.url}}'>
 <hr>
 <div class='text-end'>
 <p class='blockquote'>{{user_post.body}}</p>
@@ -14,9 +14,12 @@
 </div>
 </div>
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <a href="{% url 'post_update' user_post.id %}" class='btn btn-primary me-md-3'>Edit</a>
-    <a href="{% url 'post_delete' user_post.id %}" class='btn btn-danger me-md-2'>Delete</a>
-    <a href="{% url 'list' %}" class='btn btn-secondary'>Back</a>
+    {% if request.user.username != '' %}
+    <a href="{% url 'theblog:post_update' user_post.id %}" class='btn btn-primary me-md-3'>Edit</a>
+    <a href="{% url 'theblog:post_delete' user_post.id %}" class='btn btn-danger me-md-2'>Delete</a>
+    {% else %}
+    {% endif %}
+    <a href="{% url 'theblog:list' %}" class='btn btn-secondary'>Back</a>
 <div>
 
 {% endblock content %}

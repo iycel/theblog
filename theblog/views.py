@@ -24,8 +24,11 @@ def post_add(request):
     if request.method == 'POST':
         form = UserPost(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect ('list')
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            # form.save()
+            return redirect ('blog:list')
     context = {
         'user_form' : form
     }

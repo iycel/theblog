@@ -3,7 +3,7 @@
 <h1 align="center">The Blog</h1>
 
 
-<div align="center">
+<!-- <div align="center">
   <h3>
     <a href="https://{your-demo-link.your-domain}">
       Demo
@@ -14,7 +14,7 @@
     </a>
  
   </h3>
-</div>
+</div> -->
 
 <!-- TABLE OF CONTENTS -->
 
