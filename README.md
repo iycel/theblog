@@ -72,4 +72,4 @@ $ git clone https://github.com/your-user-name/your-project-name
 
 - GitHub [@iycel](https://github.com/iycel)
 
-- Linkedin [@iycel](www.linkedin.com/in/iycel)
+- Linkedin [@iycel](https://linkedin.com/in/iycel)
