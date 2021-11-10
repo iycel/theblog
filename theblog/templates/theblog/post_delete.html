@@ -10,7 +10,7 @@
         <h2>Are you sure delete {{user_post_delete}} ?<h2>
         {% comment %} <a href="{% url 'list'%}"><input type="submit" value="Yes"></a>
         {% comment %} <input type="submit" value="Yes"> {% endcomment %} 
-        <input type="submit" value="Yes" onclick="window.location='{% url 'theblog:list' %}'"/>
+        <input type="submit" value="Yes" onclick="window.location='{% url 'theblog:home' %}'"/>
         <input type="button" value="No" onclick="window.location='{{request.META.HTTP_REFERER}}'"/>
     </form>
 </div>

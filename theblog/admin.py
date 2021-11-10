@@ -7,3 +7,5 @@ admin.site.register(Comment)
 admin.site.register(Like)
 admin.site.register(DisLike)
 admin.site.register(PostView)
+
+

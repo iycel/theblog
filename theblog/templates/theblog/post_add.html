@@ -9,7 +9,7 @@ New Post
         <h1 class='fw-bold mb-4'>Blog Post</h1>
     </div>
     <div>
-        <form action="" enctype='multipart/form-data' method="post" id='addnewpost'>
+        <form action="" enctype='multipart/form-data' method="POST" id='addnewpost'>
 
             {% csrf_token %}
 
@@ -17,13 +17,13 @@ New Post
             <div class='input-group mb-3 d-grid gap-2 text-capitalize'>{{i.name}} : </div>
             <div class='input-group mb-3 d-grid gap-2'>{{i}}</div>
             {% endfor %}
-            {% comment %} <div>
-        <a class='btn btn-outline-primary mt-5' onclick="document.getElementById('addnewpost').submit()">Post</a>
-    </div> {% endcomment %}
+            <div>
+                <button class='btn btn-outline-primary mt-5' type='submit'>Post</button>
+            </div>
         </form>
     </div>
-    <div>
+    {% comment %} <div>
         <a class='btn btn-outline-primary mt-5' onclick="document.getElementById('addnewpost').submit()">Post</a>
-    </div>
+    </div> {% endcomment %}
 </div>
 {% endblock content %}

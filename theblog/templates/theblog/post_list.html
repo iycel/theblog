@@ -8,7 +8,10 @@ Posts from Awkwards
 {% for i in user_posts %}
 <li><a href="{% url 'theblog:details' i.id %}">{{i.title}}</a></li><br>
  {{i.author.first_name}} {{i.author.last_name}}
- <br><br><hr>
+ <br>
+ <p class='text-end'>{{i.category}} | {{i.post_date}}</>
+ <br><hr>
+ 
 {% endfor %}
 </ul>
 </div>
