@@ -46,8 +46,8 @@ class Post(models.Model):
     # def get_absolute_url(self):
     #     return reverse("post_details", args=(str(self.id)))
     
-    # class Meta :
-    #     ordering = ['-post_date']
+    class Meta :
+        ordering = ['-post_date']
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

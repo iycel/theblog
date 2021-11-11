@@ -1,13 +1,21 @@
 from django.shortcuts import get_object_or_404, redirect, render
+from django.core.paginator import Paginator
 from .models import Comment, Post, Category, Like, DisLike
 from .forms import CommentForm, UserPost
 
 # List
 def post_list(request):
     # posts = Post.objects.all()  # bütün postları getirir, biz sadece publish olanaları istiyoruz
-    posts = Post.objects.filter(status='p')  # published olanlara databese p olarak kaydediliyor. o yüzden p olarak çağırıyoruz
+    # posts = Post.objects.filter(status='p')  # published olanlara databese p olarak kaydediliyor. o yüzden p olarak çağırıyoruz
+    list_post = Post.objects.filter(status='p')
+    p = Paginator(list_post, 4)
+    page = request.GET.get('page')
+    post_p = p.get_page(page)
+    nums = ' ' * post_p.paginator.num_pages
     context = {
-        'user_posts' : posts
+        # 'user_posts' : posts,
+        'post_p' : post_p,
+        'nums' : nums
     }
     return render(request, 'theblog/post_list.html', context)
 
