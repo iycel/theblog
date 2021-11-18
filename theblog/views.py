@@ -60,6 +60,8 @@ def post_add(request):
 def post_update(request, id):
     # post = Post.objects.get(id=id)
     post = get_object_or_404(Post, id=id)
+    if request.user.id != post.author.id:
+        return redirect('theblog:home')
     form = UserPost(instance=post)
     if request.method == 'POST': 
         form = UserPost(request.POST, instance=post)
@@ -76,6 +78,8 @@ def post_update(request, id):
 def post_delete(request, id):
     # post = Post.objects.get(id=id)
     post = get_object_or_404(Post, id=id)
+    if request.user.id != post.author.id:
+        return redirect('theblog:home')
     if request.method == 'POST':
         post.delete()
         return redirect ('theblog:home')
@@ -89,7 +93,7 @@ def post_like(request, id):
     if request.method == 'POST':
         post_lk = get_object_or_404(Post, id=id)
         like = Like.objects.filter(user=request.user, post=post_lk)
-        if like.exists():  # like ettiysek delete edecek
+        if like:  # like ettiysek delete edecek
             like[0].delete()  # obj olduğu için içindeki elemana ulaşabilmek için [0] yazdık
         else:
             Like.objects.create(user=request.user, post=post_lk)
@@ -99,7 +103,7 @@ def post_dislike(request, id):
     if request.method == 'POST':
         post_dlk = get_object_or_404(Post, id=id)
         dlike = DisLike.objects.filter(user=request.user, post=post_dlk)
-        if dlike.exists():  # like ettiysek delete edecek
+        if dlike: # like ettiysek delete edecek
             dlike[0].delete()  # obj olduğu için içindeki elemana ulaşabilmek için [0] yazdık
         else:
             DisLike.objects.create(user=request.user, post=post_dlk)

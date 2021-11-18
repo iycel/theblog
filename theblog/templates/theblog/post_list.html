@@ -3,6 +3,7 @@
 Posts from Awkwards
 {% endblock title %}
 {% block content %}
+<hr>
 <div class='mt-5'>
 <ul>
 {% comment %} {% for i in user_posts %} Paginate etmek için user_posts yerine post_p yazdık{% endcomment %} 
@@ -11,7 +12,7 @@ Posts from Awkwards
  {{i.author.first_name}} {{i.author.last_name}}
  <br>
  <p class='text-end'>{{i.category}} | {{i.post_date}}</>
- <br><hr>
+ <br>
  
 {% endfor %}
 </ul>
@@ -28,7 +29,7 @@ Posts from Awkwards
     <li class="page-item disabled"><a class="page-link" href='#'>Previous</a></li>
 {% endif %}
 {% for i in nums  %}
-<li class="page-item "><a class="page-link active" href='?page={{forloop.counter}}'>{{forloop.counter}}</a></li>
+<li class="page-item "><a class="page-link" href='?page={{forloop.counter}}'>{{forloop.counter}}</a></li>
 {% endfor %}
 {% if post_p.has_next %}
     <li class="page-item"><a class="page-link" href='?page={{post_p.next_page_number}}'>Next</a></li>

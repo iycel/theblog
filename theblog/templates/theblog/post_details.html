@@ -21,51 +21,55 @@
     <div class='p-2'><i class="far fa-comment-alt btn"><span class='p-1'>{{user_post.comment_count}}</span></i></div>
     <div class='p-2'><i class="far fa-eye"><span class='p-1'>{{user_post.view_count}}</span></i></div>
     <div class='p-2'>
-    <form method='POST' id="like_count" action='{% url "theblog:post_like" user_post.id %}'>
-    {% csrf_token %}
-    <a class='btn' onclick="document.getElementById('like_count').submit()"><i class="far fa-thumbs-up"></i><span class='p-1'>{{user_post.like_count}}</span></a>
-    </form></div>
+        <form method='POST' id="like_count" action='{% url "theblog:post_like" user_post.id %}'>
+            {% csrf_token %}
+            <a class='btn' onclick="document.getElementById('like_count').submit()"><i
+                    class="far fa-thumbs-up"></i><span class='p-1'>{{user_post.like_count}}</span></a>
+        </form>
+    </div>
     <div class='p-2'>
-    <form method='POST' id="dislike_count" action='{% url "theblog:post_dislike" user_post.id %}'>
-    {% csrf_token %}
-    <a class='btn' onclick="document.getElementById('dislike_count').submit()"><i class="far fa-thumbs-down"><span class='p-1'>{{user_post.dislike_count}}</span></i></a>
+        <form method='POST' id="dislike_count" action='{% url "theblog:post_dislike" user_post.id %}'>
+            {% csrf_token %}
+            <a class='btn' onclick="document.getElementById('dislike_count').submit()"><i
+                    class="far fa-thumbs-down"><span class='p-1'>{{user_post.dislike_count}}</span></i></a>
     </div>
 </div>
 <hr>
 <div class='text-end'>
     {% for comment in user_post.comments %}
     <div>
-    <p class='blockquote'>{{comment.content}}</p>
-    <p class='blockquote-footer'>by {{comment.user}}</p>
-    {% for i in comment.comments %}
-    <p>
-    {{i.content}}
-    </p>
-    {% endfor %}
+        <p class='blockquote'>{{comment.content}}</p>
+        <p class='blockquote-footer'>by {{comment.user}}</p>
+        {% for i in comment.comments %}
+        <p>
+            {{i.content}}
+        </p>
+        {% endfor %}
     </div>
     <div class='d-flex justify-content-end mb-3 mt-3 align-items-baseline'>
-    <div class='p-4'><i class="far fa-comment-alt"> {{user_post.comment_count}}</i></div>
-    <div class='p-2'>
-    <form method='POST' id="clike_count" action='#'>
-    {% csrf_token %}
-    <a class='btn' onclick="document.getElementById('clike_count').submit()"><i class="far fa-thumbs-up"></i><span class='p-1'>{}}</span></a>
-    </form></div>
-    <div class='p-2'>
-    <form method='POST' id="cdislike_count" action='{% url "theblog:post_dislike" user_post.id %}'>
-    {% csrf_token %}
-    <a class='btn' onclick="document.getElementById('cdislike_count').submit()"><i class="far fa-thumbs-down"><span class='p-1'>{{user_post.dislike_count}}</span></i></a>
+        <div class='p-4'><i class="far fa-comment-alt"> {{user_post.comment_count}}</i></div>
+        <div class='p-2'>
+            <form method='POST' id="clike_count" action='#'>
+                {% csrf_token %}
+                <a class='btn' onclick="document.getElementById('clike_count').submit()"><i
+                        class="far fa-thumbs-up"></i><span class='p-1'>{}}</span></a>
+            </form>
+        </div>
+        <div class='p-2'>
+            <form method='POST' id="cdislike_count" action='{% url "theblog:post_dislike" user_post.id %}'>
+                {% csrf_token %}
+                <a class='btn' onclick="document.getElementById('cdislike_count').submit()">
+                <i class="far fa-thumbs-down"><span class='p-1'>{{user_post.dislike_count}}</span></i>
+                </a>
+        </div>
+    </div> {% endfor %}
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5 mt-4">
+        {% if user.id == user_post.author.id %}
+        <a href="{% url 'theblog:post_update' user_post.id %}" class='btn btn-primary me-md-3'>Edit</a>
+        <a href="{% url 'theblog:post_delete' user_post.id %}" class='btn btn-danger me-md-2'>Delete</a>
+        {% else %}
+        {% endif %}
+        <a href="{% url 'theblog:home' %}" class='btn btn-secondary'>Back</a>
     </div>
-</div
-    {% endfor %}
 </div>
-<hr>
-<div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5 mt-4">
-    {% if user.is_authenticated %}
-    <a href="{% url 'theblog:post_update' user_post.id %}" class='btn btn-primary me-md-3'>Edit</a>
-    <a href="{% url 'theblog:post_delete' user_post.id %}" class='btn btn-danger me-md-2'>Delete</a>
-    {% else %}
-    {% endif %}
-    <a href="{% url 'theblog:home' %}" class='btn btn-secondary'>Back</a>
-    <div>
-
-{% endblock content %}
+            {% endblock content %}
