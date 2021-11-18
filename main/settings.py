@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # my apps
-    'theblog',
-    'user',
+    'theblog.apps.TheblogConfig',
+    'logusers.apps.LogusersConfig',
 
 ]
 
