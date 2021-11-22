@@ -6,4 +6,4 @@ class LogusersConfig(AppConfig):
     name = 'logusers'
 
     def ready(self):
-        import logusers.signals
+        import logusers.signals  # signalsın çalışması için bunu eklemelisiniz.
